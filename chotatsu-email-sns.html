@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CHOTATSU - メール・SNS連携画面</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', sans-serif;
+        }
+        
+        body {
+            background-color: #fff;
+            height: 100vh;
+            max-width: 430px;
+            margin: 0 auto;
+            position: relative;
+            font-size: 14px;
+        }
+        
+        .status-bar {
+            background-color: #000;
+            color: #fff;
+            padding: 5px 15px;
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+        }
+        
+        .status-bar-time {
+            font-weight: bold;
+        }
+        
+        .status-bar-icons {
+            display: flex;
+            gap: 5px;
+        }
+        
+        .container {
+            padding: 20px;
+        }
+        
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+        
+        .title {
+            font-size: 18px;
+            font-weight: bold;
+        }
+        
+        .close-button {
+            font-size: 20px;
+            color: #333;
+        }
+        
+        .message {
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            color: #333;
+        }
+        
+        .terms-link {
+            color: #007bff;
+            text-decoration: none;
+        }
+        
+        .login-options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        
+        .login-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 14px;
+            border-radius: 5px;
+            font-size: 14px;
+            font-weight: bold;
+            color: white;
+            position: relative;
+        }
+        
+        .email-login {
+            background-color: #e53935;
+            border: 2px solid #e53935;
+        }
+        
+        .twitter-login {
+            background-color: #1da1f2;
+        }
+        
+        .facebook-login {
+            background-color: #3b5998;
+        }
+        
+        .line-login {
+            background-color: #00c300;
+        }
+        
+        .apple-login {
+            background-color: #000;
+        }
+        
+        .login-icon {
+            margin-right: 10px;
+            font-size: 18px;
+        }
+        
+        .highlight-arrow {
+            position: absolute;
+            right: -30px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #f00;
+            font-size: 24px;
+        }
+        
+        .instruction {
+            position: fixed;
+            bottom: -60px;
+            width: 100%;
+            max-width: 430px;
+            text-align: center;
+            font-size: 16px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="title">メール・SNS連携</div>
+            <div class="close-button">×</div>
+        </div>
+        
+        <div class="message">
+            連携をすることで、今後お使いの端末からログインしてご利用いただけるようになります。<br><br>
+            ご利用あたって、<a href="#" class="terms-link">利用規約</a>・<a href="#" class="terms-link">プライバシーポリシー</a>をご確認ください。
+        </div>
+        
+        <div class="login-options">
+            <div class="login-button email-login">
+                <span class="login-icon">✉️</span>
+                <span>メールアドレスを連携する</span>
+                <span class="highlight-arrow">←</span>
+            </div>
+            
+            <div class="login-button twitter-login">
+                <span class="login-icon">𝕏</span>
+                <span>Twitterを連携する</span>
+            </div>
+            
+            <div class="login-button facebook-login">
+                <span class="login-icon">f</span>
+                <span>Facebookを連携する</span>
+            </div>
+            
+            <div class="login-button line-login">
+                <span class="login-icon">L</span>
+                <span>LINEを連携する</span>
+            </div>
+            
+            <div class="login-button apple-login">
+                <span class="login-icon">🍎</span>
+                <span>Appleで連携する</span>
+            </div>
+        </div>
+    </div>
+    
+    <div class="instruction">メールアドレスを登録</div>
+</body>
+</html>

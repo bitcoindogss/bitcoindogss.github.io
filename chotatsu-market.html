@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CHOTATSU - マーケット画面</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', sans-serif;
+        }
+        
+        body {
+            background-color: #fff;
+            height: 100vh;
+            max-width: 430px;
+            margin: 0 auto;
+            position: relative;
+            font-size: 14px;
+        }
+        
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .token-info {
+            flex-grow: 1;
+            padding: 10px 15px;
+        }
+        
+        .token-name {
+            font-size: 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .token-name-left {
+            display: flex;
+            align-items: center;
+        }
+        
+        .follow-btn {
+            background-color: #f0f8ff;
+            color: #1e90ff;
+            border: none;
+            border-radius: 20px;
+            padding: 3px 12px;
+            font-size: 12px;
+            margin-left: 10px;
+        }
+        
+        .more-options {
+            color: #999;
+        }
+        
+        .price-info {
+            margin-top: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .price {
+            font-size: 22px;
+            font-weight: bold;
+        }
+        
+        .currency {
+            font-size: 12px;
+            color: #999;
+            margin-left: 5px;
+        }
+        
+        .change-percentage {
+            color: #4caf50;
+            font-size: 16px;
+            font-weight: bold;
+        }
+        
+        .chart-container {
+            margin-top: 10px;
+            height: 200px;
+            padding: 0 15px;
+            position: relative;
+        }
+        
+        .chart {
+            width: 100%;
+            height: 100%;
+            background-image: linear-gradient(to right, #f0f0f0 1px, transparent 1px),
+                             linear-gradient(to bottom, #f0f0f0 1px, transparent 1px);
+            background-size: 20% 25%;
+            position: relative;
+        }
+        
+        .chart-line {
+            position: absolute;
+            width: 90%;
+            height: 100px;
+            top: 50px;
+            left: 5%;
+        }
+        
+        .chart-line path {
+            stroke: #1e90ff;
+            stroke-width: 2;
+            fill: none;
+        }
+        
+        .time-filter {
+            display: flex;
+            justify-content: space-around;
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .time-option {
+            padding: 5px 15px;
+            border-radius: 15px;
+            font-size: 12px;
+            color: #666;
+        }
+        
+        .time-option.selected {
+            background-color: #f0f0f0;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .action-buttons {
+            display: flex;
+            padding: 15px;
+            gap: 10px;
+        }
+        
+        .action-btn {
+            flex: 1;
+            padding: 12px;
+            border-radius: 5px;
+            text-align: center;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        .buy-btn {
+            background-color: #e53935;
+            color: white;
+            border: none;
+        }
+        
+        .sell-btn {
+            background-color: white;
+            color: #333;
+            border: 1px solid #ccc;
+        }
+        
+        .account-info {
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-top: 1px solid #eee;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .account-balance {
+            font-size: 18px;
+            font-weight: bold;
+        }
+        
+        .holding-info {
+            display: flex;
+            flex-direction: column;
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .holding-title {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+        
+        .holding-item {
+            border: 1px solid #f00;
+            border-radius: 5px;
+            padding: 12px;
+            margin-top: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .holding-name {
+            font-weight: bold;
+        }
+        
+        .holding-amount {
+            font-weight: bold;
+        }
+        
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            max-width: 430px;
+            background: #fff;
+            border-top: 1px solid #eee;
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 0;
+        }
+        
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 10px;
+            color: #666;
+        }
+        
+        .nav-icon {
+            font-size: 20px;
+            margin-bottom: 4px;
+        }
+        
+        .nav-rank {
+            color: #f00;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div style="visibility: hidden;">←</div>
+        <div style="height: 2px; background-color: #f00; width: 100px;"></div>
+        <div style="visibility: hidden;">→</div>
+    </div>
+    
+    <div class="token-info">
+        <div class="token-name">
+            <div class="token-name-left">
+                マーケットプレイス/取引おしみ
+                <button class="follow-btn">フォロー</button>
+            </div>
+            <div class="more-options">⋮</div>
+        </div>
+        
+        <div class="price-info">
+            <div>
+                <span class="price">¥ 243,975.0</span>
+                <span class="currency">ポイント</span>
+            </div>
+            <div class="change-percentage">+287.9%</div>
+        </div>
+    </div>
+    
+    <div class="chart-container">
+        <div class="chart">
+            <svg class="chart-line" viewBox="0 0 100 50">
+                <path d="M0,40 C10,40 15,20 20,15 C25,10 30,5 40,5 C50,5 60,10 70,20 C80,30 90,40 100,40"></path>
+            </svg>
+        </div>
+    </div>
+    
+    <div class="time-filter">
+        <div class="time-option">1日</div>
+        <div class="time-option">1週</div>
+        <div class="time-option selected">1ヶ月</div>
+        <div class="time-option">1年</div>
+    </div>
+    
+    <div class="action-buttons">
+        <button class="action-btn buy-btn">購入</button>
+        <button class="action-btn sell-btn">売却</button>
+    </div>
+    
+    <div class="account-info">
+        <div>
+            <div style="color: #999; font-size: 12px;">残高</div>
+            <div class="account-balance">90,539 <span style="font-size: 12px;">ポイント</span></div>
+        </div>
+        <div style="text-align: right; font-size: 12px; color: #999;">
+            <div>平均取得価格 ¥87,309.34</div>
+            <div>差益 ¥87,309.34（+456.09%）</div>
+            <div>1ポイント当たり¥60,000</div>
+        </div>
+    </div>
+    
+    <div class="holding-info">
+        <div class="holding-title">あなたの保有トークン</div>
+        <div class="holding-item">
+            <div class="holding-name">CHトークン受付始トークン</div>
+            <div class="holding-amount">101 <span style="font-size: 12px;">トークン</span></div>
+        </div>
+    </div>
+    
+    <div class="bottom-nav" style="margin-top: 20px;">
+        <div class="nav-item">
+            <div class="nav-icon">🏠</div>
+            <div>ホーム</div>
+        </div>
+        <div class="nav-item">
+            <div class="nav-icon">📊</div>
+            <div>チャート</div>
+        </div>
+        <div class="nav-item">
+            <div class="nav-icon nav-rank">🏆</div>
+            <div style="color: #f00;">ランキング</div>
+        </div>
+        <div class="nav-item">
+            <div class="nav-icon">🔍</div>
+            <div>検索</div>
+        </div>
+        <div class="nav-item">
+            <div class="nav-icon">👤</div>
+            <div>マイページ</div>
+        </div>
+    </div>
+</body>
+</html>

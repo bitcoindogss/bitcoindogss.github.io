@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CHOTATSU - アカウント設定画面</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', sans-serif;
+        }
+        
+        body {
+            background-color: #fff;
+            height: 100vh;
+            max-width: 430px;
+            margin: 0 auto;
+            position: relative;
+            font-size: 14px;
+        }
+        
+        .status-bar {
+            background-color: #000;
+            color: #fff;
+            padding: 5px 15px;
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+        }
+        
+        .status-bar-time {
+            font-weight: bold;
+        }
+        
+        .status-bar-icons {
+            display: flex;
+            gap: 5px;
+        }
+        
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .logo {
+            font-size: 18px;
+            font-weight: bold;
+        }
+        
+        .logo span:nth-child(odd) {
+            color: #000;
+        }
+        
+        .logo span:nth-child(even) {
+            color: #f05;
+        }
+        
+        .logo .blue-dot {
+            color: #0af;
+        }
+        
+        .header-actions {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .warning-banner {
+            background-color: #fef3cd;
+            border-top: 1px solid #fde68a;
+            border-bottom: 1px solid #fde68a;
+            color: #7c2d12;
+            padding: 12px 15px;
+            font-size: 12px;
+            display: flex;
+            align-items: flex-start;
+            position: relative;
+        }
+        
+        .warning-icon {
+            font-size: 16px;
+            margin-right: 8px;
+            color: #eab308;
+            flex-shrink: 0;
+        }
+        
+        .banner-text {
+            line-height: 1.5;
+            flex-grow: 1;
+        }
+        
+        .banner-arrow {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #f00;
+            font-size: 24px;
+        }
+        
+        .account-menu {
+            margin-top: 20px;
+        }
+        
+        .menu-item {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .menu-icon {
+            width: 30px;
+            height: 30px;
+            background: #f5f5f5;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+        
+        .menu-text {
+            flex-grow: 1;
+        }
+        
+        .menu-arrow {
+            color: #ccc;
+            margin-left: 8px;
+        }
+        
+        .highlight-arrow {
+            position: absolute;
+            right: 30px;
+            top: 107px; /* Positioned to point at the warning banner */
+            color: #f00;
+            font-size: 24px;
+            transform: rotate(-45deg);
+        }
+        
+        .instruction {
+            position: fixed;
+            bottom: -60px;
+            width: 100%;
+            max-width: 430px;
+            text-align: center;
+            font-size: 16px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="menu-icon">≡</div>
+        <div class="logo">
+            <span>C</span><span>H</span><span>O</span><span>T</span><span>A</span><span>T</span><span>S</span><span class="blue-dot">.</span><span>U</span>
+        </div>
+        <div class="header-actions">
+            <div>🎁</div>
+            <div>🔔</div>
+        </div>
+    </div>
+    
+    <div class="warning-banner">
+        <div class="warning-icon">⚠️</div>
+        <div class="banner-text">
+            メールまたはSNS登録しましょう<br>
+            本機能をより快適に、メールアドレスやSNSアカウントを連携しましょう
+        </div>
+        <div class="banner-arrow">↑</div>
+    </div>
+    
+    <div class="highlight-arrow">↗</div>
+    
+    <div class="account-menu">
+        <div class="menu-item">
+            <div class="menu-icon">👤</div>
+            <div class="menu-text">テスト</div>
+            <div class="menu-arrow">→</div>
+        </div>
+        
+        <div class="menu-item">
+            <div class="menu-icon">💰</div>
+            <div class="menu-text">CHOTATSUポイント／売上金</div>
+            <div class="menu-arrow">→</div>
+        </div>
+        
+        <div class="menu-item">
+            <div class="menu-icon">📅</div>
+            <div class="menu-text">スケジュール</div>
+            <div class="menu-arrow">→</div>
+        </div>
+        
+        <div class="menu-item">
+            <div class="menu-icon">📊</div>
+            <div class="menu-text">年間収支レポート</div>
+            <div class="menu-arrow">→</div>
+        </div>
+        
+        <div class="menu-item">
+            <div class="menu-icon">⚙️</div>
+            <div class="menu-text">プロフィール設定</div>
+            <div class="menu-arrow">→</div>
+        </div>
+    </div>
+    
+    <div class="instruction">上部に表示されたバナーをタップ</div>
+</body>
+</html>

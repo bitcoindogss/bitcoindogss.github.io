@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CHOTATSU - 購入完了画面</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', sans-serif;
+        }
+        
+        body {
+            background-color: #fff;
+            height: 100vh;
+            max-width: 430px;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .menu-icon {
+            font-size: 18px;
+        }
+        
+        .header-title {
+            font-size: 16px;
+            font-weight: bold;
+        }
+        
+        .close-icon {
+            font-size: 18px;
+        }
+        
+        .tabs {
+            display: flex;
+            border-bottom: 1px solid #eee;
+            overflow-x: auto;
+            white-space: nowrap;
+            scrollbar-width: none;
+        }
+        
+        .tabs::-webkit-scrollbar {
+            display: none;
+        }
+        
+        .tab {
+            padding: 12px 15px;
+            font-size: 14px;
+        }
+        
+        .tab.active {
+            color: #f05;
+            border-bottom: 2px solid #f05;
+            font-weight: bold;
+        }
+        
+        .content {
+            padding: 15px;
+            height: calc(100vh - 106px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .completion-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 30px;
+        }
+        
+        .completion-circle {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 4px solid #e1f5fe;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+        
+        .completion-circle-inner {
+            width: 70%;
+            height: 70%;
+            border-radius: 50%;
+            border: 4px solid #e1f5fe;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .completion-circle-core {
+            width: 50%;
+            height: 50%;
+            border-radius: 50%;
+            border: 4px solid #e1f5fe;
+        }
+        
+        .completion-message {
+            font-size: 18px;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 25px;
+            line-height: 1.5;
+        }
+        
+        .completion-details {
+            font-size: 14px;
+            color: #666;
+            text-align: center;
+            line-height: 1.6;
+            max-width: 90%;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="menu-icon">≡</div>
+        <div class="header-title">CHトークン受付開始</div>
+        <div class="close-icon">✕</div>
+    </div>
+    
+    <div class="tabs">
+        <div class="tab">ホーム</div>
+        <div class="tab">マーケット</div>
+        <div class="tab active">ファンディング</div>
+        <div class="tab">活動報告</div>
+        <div class="tab">イベント</div>
+    </div>
+    
+    <div class="content">
+        <div class="completion-title">購入完了</div>
+        
+        <div class="completion-circle">
+            <div class="completion-circle-inner">
+                <div class="completion-circle-core"></div>
+            </div>
+        </div>
+        
+        <div class="completion-message">
+            プロジェクトの支援が完了しました！
+        </div>
+        
+        <div class="completion-details">
+            証明書送信確認のためのメールを送信しました。3日以内にご返信下さい。もし証明書確認ができない場合、購入がキャンセルになる場合がありますのでご注意下さい。
+        </div>
+    </div>
+</body>
+</html>

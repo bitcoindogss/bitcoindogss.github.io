@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CHOTATSU - ランキング詳細画面</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', sans-serif;
+        }
+        
+        body {
+            background-color: #fff;
+            height: 100vh;
+            max-width: 430px;
+            margin: 0 auto;
+            position: relative;
+            font-size: 14px;
+        }
+        
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .logo {
+            font-size: 18px;
+            font-weight: bold;
+        }
+        
+        .logo span:nth-child(odd) {
+            color: #000;
+        }
+        
+        .logo span:nth-child(even) {
+            color: #f05;
+        }
+        
+        .logo .blue-dot {
+            color: #0af;
+        }
+        
+        .icon-group {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .icon {
+            width: 24px;
+            height: 24px;
+            text-align: center;
+        }
+        
+        .title {
+            padding: 15px;
+            font-size: 18px;
+            font-weight: bold;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .content {
+            height: calc(100vh - 110px);
+            overflow-y: auto;
+            padding-bottom: 70px;
+        }
+        
+        .token-row {
+            display: flex;
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+            align-items: center;
+        }
+        
+        .token-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            margin-right: 10px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #f5f5f5;
+        }
+        
+        .token-info {
+            flex-grow: 1;
+        }
+        
+        .token-name {
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 3px;
+        }
+        
+        .token-detail {
+            font-size: 12px;
+            color: #666;
+        }
+        
+        .token-price {
+            text-align: right;
+        }
+        
+        .price-value {
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 3px;
+        }
+        
+        .price-change {
+            font-size: 12px;
+        }
+        
+        .price-up {
+            color: #4caf50;
+        }
+        
+        .price-down {
+            color: #f44336;
+        }
+        
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            max-width: 430px;
+            background: #fff;
+            border-top: 1px solid #eee;
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 0;
+        }
+        
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 10px;
+            color: #666;
+        }
+        
+        .nav-icon {
+            font-size: 20px;
+            margin-bottom: 4px;
+        }
+        
+        .nav-rank {
+            color: #f00;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="menu-icon">≡</div>
+        <div class="logo">
+            <span>C</span><span>H</span><span>O</span><span>T</span><span>A</span><span>T</span><span>S</span><span class="blue-dot">.</span><span>U</span>
+        </div>
+        <div class="icon-group">
+            <div class="icon">🎁</div>
+            <div class="icon">🔔</div>
+        </div>
+    </div>
+    
+    <div class="title">ランキング</div>
+    
+    <div class="content">
+        <div class="token-row">
+            <div class="token-icon" style="background-color: #fd7e14;">
+                <div style="width: 20px; height: 20px; background-color: #f00; border-radius: 50%;"></div>
+            </div>
+            <div class="token-info">
+                <div class="token-name">CHトークン受付開始</div>
+                <div class="token-detail">30,549 トークン</div>
+            </div>
+            <div class="token-price">
+                <div class="price-value">¥24,599.1</div>
+                <div class="price-change price-up">+962.3%</div>
+            </div>
+        </div>
+        
+        <div class="token-row">
+            <div class="token-icon" style="background-color: #007bff;">
+                <div style="font-size: 16px; color: white;">CH</div>
+            </div>
+            <div class="token-info">
+                <div class="token-name">田中と夢のオルタナティブ</div>
+                <div class="token-detail">58,610 トークン</div>
+            </div>
+            <div class="token-price">
+                <div class="price-value">¥1,525.3</div>
+                <div class="price-change price-up">+12.83%</div>
+            </div>
+        </div>
+        
+        <div class="token-row">
+            <div class="token-icon" style="background-color: #212529;">
+                <div style="font-size: 16px; color: white;">⚡</div>
+            </div>
+            <div class="token-info">
+                <div class="token-name">ヴォルバックグラインダー</div>
+                <div class="token-detail">10,044 トークン</div>
+            </div>
+            <div class="token-price">
+                <div class="price-value">¥27.0</div>
+                <div class="price-change price-up">+90.0%</div>
+            </div>
+        </div>
+        
+        <div class="token-row">
+            <div class="token-icon" style="background-color: #e9ecef;">
+                <div style="font-size: 16px;">🐶</div>
+            </div>
+            <div class="token-info">
+                <div class="token-name">究極 犬円</div>
+                <div class="token-detail">3,990 トークン</div>
+            </div>
+            <div class="token-price">
+                <div class="price-value">¥49.2</div>
+                <div class="price-change price-up">+100.0%</div>
+            </div>
+        </div>
+        
+        <div class="token-row">
+            <div class="token-icon" style="background-color: #f8f9fa;">
+                <div style="font-size: 16px;">👩</div>
+            </div>
+            <div class="token-info">
+                <div class="token-name">花蘭/アメ</div>
+                <div class="token-detail">6,900 トークン</div>
+            </div>
+            <div class="token-price">
+                <div class="price-value">¥2.3</div>
+                <div class="price-change price-up">+80.0%</div>
+            </div>
+        </div>
+        
+        <div class="token-row">
+            <div class="token-icon" style="background-color: #dc3545;">
+                <div style="font-size: 16px; color: white;">JP</div>
+            </div>
+            <div class="token-info">
+                <div class="token-name">日本ポケカ協会</div>
+                <div class="token-detail">6,872 トークン</div>
+            </div>
+            <div class="token-price">
+                <div class="price-value">¥10.2</div>
+                <div class="price-change price-up">+50.0%</div>
+            </div>
+        </div>
+        
+        <div class="token-row">
+            <div class="token-icon" style="background-color: #20c997;">
+                <div style="font-size: 16px; color: white;">MC</div>
+            </div>
+            <div class="token-info">
+                <div class="token-name">横浜ピープル3Sアーズ</div>
+                <div class="token-detail">9,784 トークン</div>
+            </div>
+            <div class="token-price">
+                <div class="price-value">¥6.9</div>
+                <div class="price-change price-up">+35.0%</div>
+            </div>
+        </div>
+        
+        <div class="token-row">
+            <div class="token-icon" style="background-color: #e9ecef;">
+                <div style="font-size: 16px;">🎮</div>
+            </div>
+            <div class="token-info">
+                <div class="token-name">CryptoNinja Gaming</div>
+                <div class="token-detail">6,838 トークン</div>
+            </div>
+            <div class="token-price">
+                <div class="price-value">¥62.2</div>
+                <div class="price-change price-up">+30.0%</div>
+            </div>
+        </div>
+        
+        <div class="token-row">
+            <div class="token-icon" style="background-color: #ffc107;">
+                <div style="font-size: 16px;">🍋</div>
+            </div>
+            <div class="token-info">
+                <div class="token-name">レモン花満開</div>
+                <div class="token-detail">6,796 トークン</div>
+            </div>
+            <div class="token-price">
+                <div class="price-value">¥6.2</div>
+                <div class="price-change price-up">+40.0%</div>
+            </div>
+        </div>
+        
+        <div class="token-row">
+            <div class="token-icon" style="background-color: #6f42c1;">
+                <div style="font-size: 16px; color: white;">JP</div>
+            </div>
+            <div class="token-info">
+                <div class="token-name">日本エイチャ株式会</div>
+                <div class="token-detail">5,553 トークン</div>
+            </div>
+            <div class="token-price">
+                <div class="price-value">¥6.4</div>
+                <div class="price-change price-up">+28.0%</div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="bottom-nav">
+        <div class="nav-item">
+            <div class="nav-icon">🏠</div>
+            <div>ホーム</div>
+        </div>
+        <div class="nav-item">
+            <div class="nav-icon">📊</div>
+            <div>チャート</div>
+        </div>
+        <div class="nav-item">
+            <div class="nav-icon nav-rank">🏆</div>
+            <div style="color: #f00;">ランキング</div>
+        </div>
+        <div class="nav-item">
+            <div class="nav-icon">🔍</div>
+            <div>検索</div>
+        </div>
+        <div class="nav-item">
+            <div class="nav-icon">👤</div>
+            <div>マイページ</div>
+        </div>
+    </div>
+</body>
+</html>

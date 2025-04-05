@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CHOTATSU - ログイン画面</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', sans-serif;
+        }
+        
+        body {
+            background-color: #fff;
+            height: 100vh;
+            max-width: 430px;
+            margin: 0 auto;
+            position: relative;
+            font-size: 14px;
+        }
+        
+        .browser-header {
+            padding: 10px;
+            background-color: #f5f5f5;
+            border-bottom: 1px solid #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+        }
+        
+        .browser-url {
+            background-color: #fff;
+            border-radius: 15px;
+            padding: 5px 10px;
+            width: 80%;
+            text-align: center;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            font-size: 10px;
+        }
+        
+        .status-bar {
+            background-color: #000;
+            color: #fff;
+            padding: 5px 15px;
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+        }
+        
+        .status-bar-time {
+            font-weight: bold;
+        }
+        
+        .status-bar-icons {
+            display: flex;
+            gap: 5px;
+        }
+        
+        .content {
+            padding: 20px;
+        }
+        
+        .logo {
+            text-align: center;
+            margin: 20px 0;
+            font-size: 20px;
+            font-weight: bold;
+        }
+        
+        .logo span:nth-child(odd) {
+            color: #000;
+        }
+        
+        .logo span:nth-child(even) {
+            color: #f05;
+        }
+        
+        .logo .blue-dot {
+            color: #0af;
+        }
+        
+        .gift-title {
+            font-size: 16px;
+            font-weight: bold;
+            text-align: center;
+            margin: 20px 0;
+        }
+        
+        .app-description {
+            font-size: 12px;
+            line-height: 1.6;
+            margin: 20px 0;
+        }
+        
+        .step {
+            margin: 25px 0;
+        }
+        
+        .step-number {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .circle {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: #f00;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 10px;
+            margin-right: 10px;
+        }
+        
+        .step-title {
+            font-weight: bold;
+        }
+        
+        .app-download {
+            text-align: center;
+        }
+        
+        .store-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 10px 0;
+            padding: 10px;
+            border: 2px dashed #f00;
+            border-radius: 5px;
+        }
+        
+        .store-button {
+            height: 40px;
+            overflow: hidden;
+            border-radius: 5px;
+        }
+        
+        .divider {
+            text-align: center;
+            margin: 20px 0;
+            color: #999;
+            font-size: 12px;
+            position: relative;
+        }
+        
+        .divider::before,
+        .divider::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            width: 45%;
+            height: 1px;
+            background-color: #ddd;
+        }
+        
+        .divider::before {
+            left: 0;
+        }
+        
+        .divider::after {
+            right: 0;
+        }
+        
+        .login-options {
+            margin: 20px 0;
+        }
+        
+        .login-button {
+            width: 100%;
+            padding: 15px;
+            border-radius: 5px;
+            text-align: center;
+            color: white;
+            font-weight: bold;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+        
+        .email-login {
+            background-color: #e53935;
+            border: 2px dashed #f00;
+            border-radius: 5px;
+        }
+        
+        .twitter-login {
+            background-color: #000;
+        }
+        
+        .facebook-login {
+            background-color: #3b5998;
+        }
+        
+        .line-login {
+            background-color: #00c300;
+        }
+        
+        .icon {
+            margin-right: 10px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <div class="status-bar">
+        <div class="status-bar-time">15:38</div>
+        <div class="status-bar-icons">
+            <div>📶</div>
+            <div>🔋</div>
+        </div>
+    </div>
+    
+    <div class="browser-header">
+        <div class="browser-url">chotatsu.jp</div>
+    </div>
+    
+    <div class="content">
+        <div class="logo">
+            <span>C</span><span>H</span><span>O</span><span>T</span><span>A</span><span>T</span><span>S</span><span class="blue-dot">.</span><span>U</span>
+        </div>
+        
+        <div class="gift-title">CHOTATSUギフトコード⇒ポイント交換</div>
+        
+        <div class="app-description">
+            CHOTATSUアプリをまだダウンロードされていない方はまずアプリをダウンロードし、CHOTATSUアプリで「アカウント」メニューの「アカウント情報」からメールアドレスとIDがお分かりになりましたら、あなたのIDをベースにアクセスしてください。
+        </div>
+        
+        <div class="step">
+            <div class="step-number">
+                <div class="circle">1</div>
+                <div class="step-title">新規会員登録</div>
+            </div>
+            
+            <div class="app-download">
+                <div class="store-buttons">
+                    <div class="store-button">
+                        <img src="/api/placeholder/120/40" alt="App Store" style="width: 120px; height: 40px; object-fit: cover;">
+                    </div>
+                    <div class="store-button">
+                        <img src="/api/placeholder/120/40" alt="Google Play" style="width: 120px; height: 40px; object-fit: cover;">
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="divider">OR</div>
+        
+        <div class="step">
+            <div class="step-number">
+                <div class="circle">2</div>
+                <div class="step-title">ログイン</div>
+            </div>
+            
+            <div class="login-options">
+                <div class="login-button email-login">
+                    <span class="icon">✉️</span>
+                    <span>メールアドレスでログインする</span>
+                </div>
+                
+                <div class="login-button twitter-login">
+                    <span class="icon">𝕏</span>
+                    <span>𝕏でログインする</span>
+                </div>
+                
+                <div class="login-button facebook-login">
+                    <span class="icon">f</span>
+                    <span>Facebookでログインする</span>
+                </div>
+                
+                <div class="login-button line-login">
+                    <span class="icon">L</span>
+                    <span>LINEでログインする</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

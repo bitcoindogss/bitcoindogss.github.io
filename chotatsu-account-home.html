@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CHOTATSU - アカウント登録フロー（ホーム画面）</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', sans-serif;
+        }
+        
+        body {
+            background-color: #fff;
+            height: 100vh;
+            max-width: 430px;
+            margin: 0 auto;
+            position: relative;
+            font-size: 14px;
+        }
+        
+        .status-bar {
+            background-color: #000;
+            color: #fff;
+            padding: 5px 15px;
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+        }
+        
+        .status-bar-time {
+            font-weight: bold;
+        }
+        
+        .status-bar-icons {
+            display: flex;
+            gap: 5px;
+        }
+        
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .logo {
+            font-size: 18px;
+            font-weight: bold;
+        }
+        
+        .logo span:nth-child(odd) {
+            color: #000;
+        }
+        
+        .logo span:nth-child(even) {
+            color: #f05;
+        }
+        
+        .logo .blue-dot {
+            color: #0af;
+        }
+        
+        .header-actions {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .search-bar {
+            background: #f5f5f5;
+            border-radius: 20px;
+            margin: 10px 15px;
+            padding: 8px 15px;
+            display: flex;
+            align-items: center;
+            font-size: 14px;
+            color: #999;
+        }
+        
+        .search-icon {
+            margin-right: 8px;
+        }
+        
+        .filters {
+            display: flex;
+            gap: 8px;
+            padding: 0 15px;
+            margin-bottom: 15px;
+            overflow-x: auto;
+            white-space: nowrap;
+            scrollbar-width: none;
+        }
+        
+        .filters::-webkit-scrollbar {
+            display: none;
+        }
+        
+        .filter {
+            background: #f5f5f5;
+            border-radius: 30px;
+            padding: 8px 15px;
+            font-size: 12px;
+            white-space: nowrap;
+            color: #333;
+        }
+        
+        .filter.active {
+            background: #007bff;
+            color: white;
+        }
+        
+        .content {
+            padding: 0 15px;
+            height: calc(100vh - 180px);
+            overflow-y: auto;
+        }
+        
+        .project-card {
+            display: flex;
+            padding: 15px;
+            border-radius: 10px;
+            background: #fff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            margin-bottom: 15px;
+            position: relative;
+        }
+        
+        .project-img {
+            width: 70px;
+            height: 70px;
+            border-radius: 8px;
+            overflow: hidden;
+            margin-right: 15px;
+        }
+        
+        .project-info {
+            flex-grow: 1;
+        }
+        
+        .project-name {
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 4px;
+        }
+        
+        .project-type {
+            font-size: 10px;
+            color: #666;
+            margin-bottom: 8px;
+        }
+        
+        .project-desc {
+            font-size: 12px;
+            line-height: 1.5;
+            color: #333;
+        }
+        
+        .project-action {
+            position: absolute;
+            right: 15px;
+            bottom: 15px;
+            background: #007bff;
+            color: white;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+        }
+        
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            max-width: 430px;
+            background: #fff;
+            border-top: 1px solid #eee;
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 0;
+        }
+        
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 10px;
+            color: #666;
+        }
+        
+        .nav-icon {
+            font-size: 20px;
+            margin-bottom: 4px;
+        }
+        
+        .nav-account {
+            color: #f00;
+            border: 2px solid #f00;
+            border-radius: 5px;
+            padding: 2px 5px;
+        }
+        
+        .instruction {
+            position: fixed;
+            bottom: -60px;
+            width: 100%;
+            max-width: 430px;
+            text-align: center;
+            font-size: 16px;
+            font-weight: bold;
+        }
+        
+        .highlight-arrow {
+            position: absolute;
+            right: 70px;
+            bottom: 70px;
+            color: #f00;
+            font-size: 24px;
+            transform: rotate(45deg);
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="menu-icon">≡</div>
+        <div class="logo">
+            <span>C</span><span>H</span><span>O</span><span>T</span><span>A</span><span>T</span><span>S</span><span class="blue-dot">.</span><span>U</span>
+        </div>
+        <div class="header-actions">
+            <div>🎁</div>
+            <div>🔔</div>
+        </div>
+    </div>
+    
+    <div class="search-bar">
+        <span class="search-icon">🔍</span>
+        <span>オーナーを検索</span>
+    </div>
+    
+    <div class="filters">
+        <div class="filter active">注目</div>
+        <div class="filter">イベント中</div>
+        <div class="filter">投資受付中</div>
+        <div class="filter">応援ギフト受付中</div>
+    </div>
+    
+    <div class="content">
+        <div class="project-card">
+            <div class="project-img">
+                <img src="/api/placeholder/70/70" alt="YOAKE FILM" style="width: 100%; height: 100%; object-fit: cover; background-color: #007bff;">
+            </div>
+            <div class="project-info">
+                <div class="project-name">YOAKE FILM</div>
+                <div class="project-type">映像制作プロジェクト</div>
+                <div class="project-desc">三浦春馬監督・朝倉未来！第一作・BLUE FIGHT を共に！</div>
+            </div>
+            <div class="project-action">→</div>
+        </div>
+        
+        <div class="project-card">
+            <div class="project-img" style="background-color: #f5f5f5; display: flex; align-items: center; justify-content: center;">
+                <div style="font-size: 10px; color: #999;">Filament</div>
+            </div>
+            <div class="project-info">
+                <div class="project-name">Filament 支援プロジェクト</div>
+                <div class="project-type">革命的映画</div>
+                <div class="project-desc">世界に挑戦する意志</div>
+            </div>
+            <div class="project-action">→</div>
+        </div>
+        
+        <div class="project-card">
+            <div class="project-img" style="background-color: #000; display: flex; align-items: center; justify-content: center; color: white;">
+                <div style="font-size: 16px;">X</div>
+            </div>
+            <div class="project-info">
+                <div class="project-name">XTEP@ 観測所</div>
+                <div class="project-type"></div>
+                <div class="project-desc">XTEPでひらく新しいSNSのスタンダード！</div>
+            </div>
+            <div class="project-action">→</div>
+        </div>
+        
+        <div class="project-card">
+            <div class="project-img">
+                <div style="width: 100%; height: 100%; background-color: #fd7e14; display: flex; align-items: center; justify-content: center;">
+                    <div style="width: 40px; height: 40px; border-radius: 50%; background-color: #f00; position: relative; overflow: hidden;">
+                        <div style="position: absolute; top: 50%; left: 0; width: 100%; height: 15px; background-color: #000; transform: translateY(-50%);">
+                            <div style="position: absolute; top: 2px; left: 5px; width: 30px; height: 10px; background-color: #fff; border-radius: 5px;"></div>
+                        </div>
+                        <div style="position: absolute; bottom: 0; left: 0; width: 100%; height: 15px; background-color: #000;"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="project-info">
+                <div class="project-name">CHトークン受付開始</div>
+                <div class="project-type">公式アカウント</div>
+                <div class="project-desc"></div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="highlight-arrow">↘</div>
+    
+    <div class="bottom-nav">
+        <div class="nav-item">
+            <div class="nav-icon">🏠</div>
+            <div>ホーム</div>
+        </div>
+        <div class="nav-item">
+            <div class="nav-icon">📰</div>
+            <div>フィード</div>
+        </div>
+        <div class="nav-item">
+            <div class="nav-icon">💬</div>
+            <div>ファンディング</div>
+        </div>
+        <div class="nav-item">
+            <div class="nav-icon">🔍</div>
+            <div>さがす</div>
+        </div>
+        <div class="nav-item">
+            <div class="nav-icon nav-account">👤</div>
+            <div style="color: #f00;">アカウント</div>
+        </div>
+    </div>
+    
+    <div class="instruction">画面下部の［アカウント］をタップし、コミュニティを検索</div>
+</body>
+</html>

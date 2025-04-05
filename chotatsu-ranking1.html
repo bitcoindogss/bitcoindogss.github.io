@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CHOTATSU - ランキング画面（タブ選択）</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', sans-serif;
+        }
+        
+        body {
+            background-color: #fff;
+            height: 100vh;
+            max-width: 430px;
+            margin: 0 auto;
+            position: relative;
+            font-size: 14px;
+        }
+        
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .logo {
+            font-size: 18px;
+            font-weight: bold;
+        }
+        
+        .logo span:nth-child(odd) {
+            color: #000;
+        }
+        
+        .logo span:nth-child(even) {
+            color: #f05;
+        }
+        
+        .logo .blue-dot {
+            color: #0af;
+        }
+        
+        .icon-group {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .icon {
+            width: 24px;
+            height: 24px;
+            text-align: center;
+        }
+        
+        .tabs {
+            display: flex;
+            padding: 10px 15px;
+            gap: 10px;
+            overflow-x: auto;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .tab {
+            padding: 8px 15px;
+            font-size: 12px;
+            border: 1px solid #eee;
+            border-radius: 20px;
+            background-color: #f9f9f9;
+            white-space: nowrap;
+        }
+        
+        .tab.active {
+            background-color: #f00;
+            color: white;
+            border-color: #f00;
+        }
+        
+        .content {
+            height: calc(100vh - 140px);
+            overflow-y: auto;
+            padding-bottom: 70px;
+        }
+        
+        .token-row {
+            display: flex;
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+            align-items: center;
+        }
+        
+        .token-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            margin-right: 10px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #f5f5f5;
+        }
+        
+        .token-info {
+            flex-grow: 1;
+        }
+        
+        .token-name {
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 3px;
+        }
+        
+        .token-status {
+            display: flex;
+            align-items: center;
+            font-size: 12px;
+            color: #666;
+        }
+        
+        .token-badge {
+            background-color: #f5f5f5;
+            padding: 2px 6px;
+            border-radius: 10px;
+            margin-right: 8px;
+            font-size: 10px;
+        }
+        
+        .token-price {
+            text-align: right;
+        }
+        
+        .price-value {
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 3px;
+        }
+        
+        .price-change {
+            font-size: 12px;
+        }
+        
+        .price-up {
+            color: #4caf50;
+        }
+        
+        .price-down {
+            color: #f44336;
+        }
+        
+        .chart-mini {
+            width: 80px;
+            height: 30px;
+            margin-left: 10px;
+        }
+        
+        .chart-up {
+            stroke: #4caf50;
+            fill: none;
+        }
+        
+        .chart-down {
+            stroke: #f44336;
+            fill: none;
+        }
+        
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            max-width: 430px;
+            background: #fff;
+            border-top: 1px solid #eee;
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 0;
+        }
+        
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 10px;
+            color: #666;
+        }
+        
+        .nav-icon {
+            font-size: 20px;
+            margin-bottom: 4px;
+        }
+        
+        .nav-rank {
+            color: #f00;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="menu-icon">≡</div>
+        <div class="logo">
+            <span>C</span><span>H</span><span>O</span><span>T</span><span>A</span><span>T</span><span>S</span><span class="blue-dot">.</span><span>U</span>
+        </div>
+        <div class="icon-group">
+            <div class="icon">🎁</div>
+            <div class="icon">🔔</div>
+        </div>
+    </div>
+    
+    <div class="tabs">
+        <div class="tab">新着順</div>
+        <div class="tab">価格帯</div>
+        <div class="tab active">保有CT</div>
+        <div class="tab">上昇率</div>
+        <div class="tab">下落率</div>
+        <div class="tab">取引量</div>
+    </div>
+    
+    <div class="content">
+        <div class="token-row">
+            <div class="token-icon" style="background-color: #fd7e14;">
+                <div style="width: 20px; height: 20px; background-color: #f00; border-radius: 50%;"></div>
+            </div>
+            <div class="token-info">
+                <div class="token-name">CHトークン受付開始</div>
+                <div class="token-status">
+                    <div class="token-badge">2位</div>
+                    <div>売り・買</div>
+                </div>
+            </div>
+            <div class="token-price">
+                <div class="price-value">¥243,556.0</div>
+                <div class="price-change price-down">-0.30%</div>
+            </div>
+            <div class="chart-mini">
+                <svg width="100%" height="100%" viewBox="0 0 80 30">
+                    <path d="M0,15 L10,10 L20,20 L30,5 L40,15 L50,10 L60,20 L70,15 L80,25" class="chart-down"></path>
+                </svg>
+            </div>
+        </div>
+        
+        <div class="token-row">
+            <div class="token-icon" style="background-color: #e9ecef;">
+                <div style="font-size: 20px;">🐱</div>
+            </div>
+            <div class="token-info">
+                <div class="token-name">CNPトレカプロジェクト</div>
+                <div class="token-status">
+                    <div class="token-badge">4位</div>
+                    <div>売り・買</div>
+                </div>
+            </div>
+            <div class="token-price">
+                <div class="price-value">¥232,255.2</div>
+                <div class="price-change price-up">+0.92%</div>
+            </div>
+            <div class="chart-mini">
+                <svg width="100%" height="100%" viewBox="0 0 80 30">
+                    <path d="M0,20 L10,15 L20,18 L30,15 L40,10 L50,5 L60,7 L70,8 L80,5" class="chart-up"></path>
+                </svg>
+            </div>
+        </div>
+        
+        <div class="token-row">
+            <div class="token-icon" style="background-color: #e9ecef;">
+                <div style="font-size: 20px;">🎮</div>
+            </div>
+            <div class="token-info">
+                <div class="token-name">CryptoNinja Gaming</div>
+                <div class="token-status">
+                    <div class="token-badge">24位</div>
+                    <div>売り・買</div>
+                </div>
+            </div>
+            <div class="token-price">
+                <div class="price-value">¥98,217.8</div>
+                <div class="price-change price-up">+0.27%</div>
+            </div>
+            <div class="chart-mini">
+                <svg width="100%" height="100%" viewBox="0 0 80 30">
+                    <path d="M0,15 L10,18 L20,16 L30,12 L40,10 L50,8 L60,9 L70,6 L80,8" class="chart-up"></path>
+                </svg>
+            </div>
+        </div>
+        
+        <div class="token-row">
+            <div class="token-icon" style="background-color: #f00;">
+                <div style="font-size: 20px; color: white;">TX</div>
+            </div>
+            <div class="token-info">
+                <div class="token-name">RED* TOKYO PRESENT</div>
+                <div class="token-status">
+                    <div class="token-badge">4位</div>
+                    <div>売り・買</div>
+                </div>
+            </div>
+            <div class="token-price">
+                <div class="price-value">¥97,789.1</div>
+                <div class="price-change price-down">-0.55%</div>
+            </div>
+            <div class="chart-mini">
+                <svg width="100%" height="100%" viewBox="0 0 80 30">
+                    <path d="M0,10 L10,15 L20,12 L30,18 L40,15 L50,20 L60,25 L70,20 L80,25" class="chart-down"></path>
+                </svg>
+            </div>
+        </div>
+        
+        <div class="token-row">
+            <div class="token-icon" style="background-color: #20c997;">
+                <div style="font-size: 16px; color: white;">🐱</div>
+            </div>
+            <div class="token-info">
+                <div class="token-name">Live Like a Cat &LOVE</div>
+                <div class="token-status">
+                    <div class="token-badge">1位</div>
+                    <div>売り・買</div>
+                </div>
+            </div>
+            <div class="token-price">
+                <div class="price-value">¥73,390.2</div>
+                <div class="price-change price-up">+0.10%</div>
+            </div>
+            <div class="chart-mini">
+                <svg width="100%" height="100%" viewBox="0 0 80 30">
+                    <path d="M0,20 L10,18 L20,16 L30,15 L40,12 L50,10 L60,8 L70,7 L80,5" class="chart-up"></path>
+                </svg>
+            </div>
+        </div>
+        
+        <div class="token-row">
+            <div class="token-icon" style="background-color: #ff922b;">
+                <div style="font-size: 16px; color: white;">TSA</div>
+            </div>
+            <div class="token-info">
+                <div class="token-name">ThisMaXkimitamiZee</div>
+                <div class="token-status">
+                    <div class="token-badge">4位</div>
+                    <div>売り・買</div>
+                </div>
+            </div>
+            <div class="token-price">
+                <div class="price-value">¥69,136.0</div>
+                <div class="price-change price-up">+1.72%</div>
+            </div>
+            <div class="chart-mini">
+                <svg width="100%" height="100%" viewBox="0 0 80 30">
+                    <path d="M0,20 L10,18 L20,15 L30,12 L40,10 L50,8 L60,5 L70,3 L80,2" class="chart-up"></path>
+                </svg>
+            </div>
+        </div>
+    </div>
+    
+    <div class="bottom-nav">
+        <div class="nav-item">
+            <div class="nav-icon">🏠</div>
+            <div>ホーム</div>
+        </div>
+        <div class="nav-item">
+            <div class="nav-icon">📊</div>
+            <div>チャート</div>
+        </div>
+        <div class="nav-item">
+            <div class="nav-icon nav-rank">🏆</div>
+            <div style="color: #f00;">ランキング</div>
+        </div>
+        <div class="nav-item">
+            <div class="nav-icon">🔍</div>
+            <div>検索</div>
+        </div>
+        <div class="nav-item">
+            <div class="nav-icon">👤</div>
+            <div>マイページ</div>
+        </div>
+    </div>
+</body>
+</html>
