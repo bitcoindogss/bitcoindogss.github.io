@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CHOTATSU - ホーム画面</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', sans-serif;
+        }
+        
+        body {
+            background-color: #fff;
+            height: 100vh;
+            max-width: 430px;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .logo {
+            font-size: 20px;
+            font-weight: bold;
+        }
+        
+        .logo span:nth-child(odd) {
+            color: #000;
+        }
+        
+        .logo span:nth-child(even) {
+            color: #f05;
+        }
+        
+        .logo .blue-dot {
+            color: #0af;
+        }
+        
+        .icon-group {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .icon {
+            width: 24px;
+            height: 24px;
+            text-align: center;
+        }
+        
+        .search-bar {
+            background: #f5f5f5;
+            border-radius: 20px;
+            margin: 10px 15px;
+            padding: 8px 15px;
+            display: flex;
+            align-items: center;
+            font-size: 14px;
+            color: #999;
+        }
+        
+        .search-icon {
+            margin-right: 8px;
+        }
+        
+        .filters {
+            display: flex;
+            gap: 8px;
+            flex-wrap: nowrap;
+            padding: 10px 15px;
+            overflow-x: auto;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+        
+        .filters::-webkit-scrollbar {
+            display: none;
+        }
+        
+        .filter {
+            background: #f5f5f5;
+            border-radius: 30px;
+            padding: 6px 12px;
+            font-size: 12px;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+        }
+        
+        .filter.active {
+            background: #e1f5fe;
+            color: #0288d1;
+        }
+        
+        .content {
+            padding: 0 15px;
+            height: calc(100vh - 180px);
+            overflow-y: auto;
+        }
+        
+        .token-card {
+            border: 1px solid #eee;
+            border-radius: 10px;
+            padding: 12px;
+            margin-bottom: 15px;
+            display: flex;
+            position: relative;
+        }
+        
+        .token-card.highlight {
+            border: 2px solid #f00;
+        }
+        
+        .token-img {
+            width: 50px;
+            height: 50px;
+            border-radius: 5px;
+            background: #eee;
+            margin-right: 12px;
+            overflow: hidden;
+        }
+        
+        .token-info {
+            flex-grow: 1;
+        }
+        
+        .token-name {
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 4px;
+        }
+        
+        .token-desc {
+            font-size: 12px;
+            color: #666;
+            margin-top: 4px;
+        }
+        
+        .action-btn {
+            position: absolute;
+            right: 12px;
+            bottom: 12px;
+            background: #0af;
+            color: white;
+            border-radius: 50%;
+            width: 28px;
+            height: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+        }
+        
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            max-width: 430px;
+            background: #fff;
+            border-top: 1px solid #eee;
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 0;
+        }
+        
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 10px;
+            color: #666;
+        }
+        
+        .nav-icon {
+            font-size: 20px;
+            margin-bottom: 4px;
+        }
+        
+        .nav-search {
+            margin-top: -20px;
+            background: #fff;
+            border: 1px solid #f00;
+            color: #f00;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="menu-icon">≡</div>
+        <div class="logo">
+            <span>C</span><span>H</span><span>O</span><span>T</span><span>A</span><span>T</span><span>S</span><span class="blue-dot">.</span><span>U</span>
+        </div>
+        <div class="icon-group">
+            <div class="icon">🎁</div>
+            <div class="icon">🔔</div>
+        </div>
+    </div>
+    
+    <div class="search-bar">
+        <span class="search-icon">🔍</span>
+        <span>ユーザーや名前で検索</span>
+    </div>
+    
+    <div class="filters">
+        <div class="filter active">すべて</div>
+        <div class="filter">イベント中</div>
+        <div class="filter">投資受付中</div>
+        <div class="filter">応援ギフト受付中</div>
+    </div>
+    
+    <div class="content">
+        <div class="token-card highlight">
+            <div class="token-img">
+                <div style="width: 100%; height: 100%; background-color: #fd7e14; display: flex; align-items: center; justify-content: center;">
+                    <div style="width: 30px; height: 30px; background-color: #f00; border-radius: 50%; position: relative;">
+                        <div style="width: 15px; height: 5px; background-color: #fff; position: absolute; top: 15px; left: 7px; border-radius: 2px;"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="token-info">
+                <div class="token-name">CHトークン受付開始、応援チケット</div>
+                <div class="token-desc">トークンを活用してくるフランチャイズに加盟する事業会社が増えてしまった会社が...</div>
+            </div>
+            <div class="action-btn">→</div>
+        </div>
+        
+        <div class="token-card">
+            <div class="token-img">
+                <div style="width: 100%; height: 100%; background-color: #eee; display: flex; align-items: center; justify-content: center;">
+                    <div style="font-size: 20px;">☕</div>
+                </div>
+            </div>
+            <div class="token-info">
+                <div class="token-name">#SPP by sixth trans</div>
+                <div class="token-desc">MEMETOKEN</div>
+                <div class="token-desc">ミームトークン第2弾 💫</div>
+            </div>
+            <div class="action-btn">→</div>
+        </div>
+        
+        <div class="token-card">
+            <div class="token-img">
+                <div style="width: 100%; height: 100%; background-color: #ffc107; display: flex; align-items: center; justify-content: center;">
+                    <div style="font-size: 20px;">🐤</div>
+                </div>
+            </div>
+            <div class="token-info">
+                <div class="token-name">#SPP by sixth trans</div>
+                <div class="token-desc">MEMETOKEN</div>
+                <div class="token-desc">ミームトークン第2弾 💫</div>
+            </div>
+            <div class="action-btn">→</div>
+        </div>
+        
+        <div class="token-card">
+            <div class="token-img">
+                <div style="width: 100%; height: 100%; background-color: #f8f9fa; display: flex; align-items: center; justify-content: center;">
+                    <div style="font-size: 20px;">🦄</div>
+                </div>
+            </div>
+            <div class="token-info">
+                <div class="token-name">DigiCorn</div>
+                <div class="token-desc">MEMETOKEN</div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="bottom-nav">
+        <div class="nav-item">
+            <div class="nav-icon">🏠</div>
+            <div>ホーム</div>
+        </div>
+        <div class="nav-item">
+            <div class="nav-icon">👥</div>
+            <div>コミュニティ</div>
+        </div>
+        <div class="nav-item">
+            <div class="nav-icon nav-search">🔍</div>
+            <div style="color: transparent;">探す</div>
+        </div>
+        <div class="nav-item">
+            <div class="nav-icon">🏆</div>
+            <div>ランキング</div>
+        </div>
+        <div class="nav-item">
+            <div class="nav-icon">👤</div>
+            <div>マイページ</div>
+        </div>
+    </div>
+</body>
+</html>
